@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ItemCategory" load_steps=3 format=3 uid="uid://bqnhc6xuh237w"]
+
+[ext_resource type="Texture2D" uid="uid://dmtqv4k5dmpwq" path="res://assets/sprites/icons/inventory/categories/plot.png" id="1_ph3cq"]
+[ext_resource type="Script" path="res://src/resources/inventory/inventory_items/item_category.gd" id="1_yvyqq"]
+
+[resource]
+script = ExtResource("1_yvyqq")
+icon = ExtResource("1_ph3cq")
+name = "Plot"

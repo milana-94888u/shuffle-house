@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ItemCategory" load_steps=3 format=3 uid="uid://dlpxrd25vs7vb"]
+
+[ext_resource type="Texture2D" uid="uid://dki1icuap0xcv" path="res://assets/sprites/icons/inventory/categories/matrix.png" id="1_n6bk2"]
+[ext_resource type="Script" path="res://src/resources/inventory/inventory_items/item_category.gd" id="1_o1e7s"]
+
+[resource]
+script = ExtResource("1_o1e7s")
+icon = ExtResource("1_n6bk2")
+name = "Matrix"
