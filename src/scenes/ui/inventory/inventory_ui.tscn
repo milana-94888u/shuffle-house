@@ -1,155 +1,35 @@
-[gd_scene load_steps=24 format=3 uid="uid://deebvqu7tgnv1"]
+[gd_scene load_steps=6 format=3 uid="uid://deebvqu7tgnv1"]
 
 [ext_resource type="Script" path="res://src/scenes/ui/inventory/inventory_ui.gd" id="1_k74cj"]
-[ext_resource type="Script" path="res://src/resources/inventory/game_inventory.gd" id="2_atubi"]
 [ext_resource type="PackedScene" uid="uid://dfwhtfeon2vtk" path="res://src/scenes/ui/inventory/slot/ui_item_slot.tscn" id="2_r8f35"]
-[ext_resource type="Script" path="res://src/resources/inventory/inventory_slots/inventory_slot.gd" id="3_buy10"]
-[ext_resource type="Texture2D" uid="uid://cefthf43uhdne" path="res://icon.svg" id="3_ljbkn"]
-[ext_resource type="Script" path="res://src/resources/inventory/inventory_items/inventory_item.gd" id="4_bd423"]
+[ext_resource type="PackedScene" uid="uid://d864f42cwjr3" path="res://src/scenes/ui/inventory/category/category_buttons.tscn" id="3_dswfy"]
 [ext_resource type="PackedScene" uid="uid://dhsva31e3nr1u" path="res://src/scenes/ui/inventory/slot/floating_ui_item_slot.tscn" id="7_ojs2b"]
-
-[sub_resource type="Resource" id="Resource_73dke"]
-script = ExtResource("4_bd423")
-icon = ExtResource("3_ljbkn")
-name = ""
-description = ""
-price = 0.0
-
-[sub_resource type="Resource" id="Resource_flbry"]
-script = ExtResource("3_buy10")
-item = SubResource("Resource_73dke")
-amount = 2
-
-[sub_resource type="Resource" id="Resource_ka5nq"]
-script = ExtResource("4_bd423")
-icon = ExtResource("3_ljbkn")
-name = ""
-description = ""
-price = 0.0
-
-[sub_resource type="Resource" id="Resource_vk48r"]
-script = ExtResource("3_buy10")
-item = SubResource("Resource_ka5nq")
-amount = 60
-
-[sub_resource type="Resource" id="Resource_f56by"]
-script = ExtResource("3_buy10")
-amount = 0
-
-[sub_resource type="Resource" id="Resource_uy5jf"]
-script = ExtResource("3_buy10")
-amount = 0
-
-[sub_resource type="Resource" id="Resource_w4ot5"]
-script = ExtResource("3_buy10")
-amount = 0
-
-[sub_resource type="Resource" id="Resource_771vb"]
-script = ExtResource("3_buy10")
-amount = 0
-
-[sub_resource type="Resource" id="Resource_7grl0"]
-script = ExtResource("3_buy10")
-amount = 0
-
-[sub_resource type="Resource" id="Resource_in6dg"]
-script = ExtResource("3_buy10")
-amount = 0
-
-[sub_resource type="Resource" id="Resource_t3u4p"]
-script = ExtResource("3_buy10")
-amount = 0
-
-[sub_resource type="Resource" id="Resource_a23fs"]
-script = ExtResource("3_buy10")
-amount = 0
-
-[sub_resource type="Resource" id="Resource_24bat"]
-script = ExtResource("3_buy10")
-amount = 0
-
-[sub_resource type="Resource" id="Resource_1opes"]
-script = ExtResource("3_buy10")
-amount = 0
-
-[sub_resource type="Resource" id="Resource_j8730"]
-script = ExtResource("2_atubi")
-min_empty_slots = 10
-slots = Array[ExtResource("3_buy10")]([SubResource("Resource_flbry"), SubResource("Resource_vk48r"), SubResource("Resource_f56by"), SubResource("Resource_uy5jf"), SubResource("Resource_w4ot5"), SubResource("Resource_771vb"), SubResource("Resource_7grl0"), SubResource("Resource_in6dg"), SubResource("Resource_t3u4p"), SubResource("Resource_a23fs"), SubResource("Resource_24bat"), SubResource("Resource_1opes")])
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fvp3r"]
-width = 64
-height = 64
+[ext_resource type="PackedScene" uid="uid://cdam2fgd05y1x" path="res://src/scenes/ui/inventory/inventory_grid.tscn" id="8_1xn64"]
 
 [node name="InventoryUI" type="Control"]
 custom_minimum_size = Vector2(664, 0)
 layout_mode = 3
-anchor_right = 0.54
-anchor_bottom = 1.0
-offset_right = 0.47998
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_k74cj")
-slot_scene = ExtResource("2_r8f35")
-inventory = SubResource("Resource_j8730")
-
-[node name="PlayerAllItemsSide" type="VBoxContainer" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_k74cj")
+slot_scene = ExtResource("2_r8f35")
 
-[node name="CategoryButtons" type="HBoxContainer" parent="PlayerAllItemsSide"]
-layout_mode = 2
-alignment = 1
+[node name="PlayerAllItemsSide" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(720, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 664.0
+grow_vertical = 2
 
-[node name="MatrixCategoryButton" type="TextureButton" parent="PlayerAllItemsSide/CategoryButtons"]
+[node name="CategoryButtons" parent="PlayerAllItemsSide" instance=ExtResource("3_dswfy")]
 layout_mode = 2
-mouse_filter = 1
-mouse_default_cursor_shape = 2
-texture_normal = SubResource("NoiseTexture2D_fvp3r")
 
-[node name="WeaponCategoryButton" type="TextureButton" parent="PlayerAllItemsSide/CategoryButtons"]
+[node name="InventoryGrid" parent="PlayerAllItemsSide" instance=ExtResource("8_1xn64")]
 layout_mode = 2
-mouse_filter = 1
-mouse_default_cursor_shape = 2
-texture_normal = SubResource("NoiseTexture2D_fvp3r")
-
-[node name="ArmorCategoryButton" type="TextureButton" parent="PlayerAllItemsSide/CategoryButtons"]
-layout_mode = 2
-mouse_filter = 1
-mouse_default_cursor_shape = 2
-texture_normal = SubResource("NoiseTexture2D_fvp3r")
-
-[node name="StoryCategoryButton" type="TextureButton" parent="PlayerAllItemsSide/CategoryButtons"]
-layout_mode = 2
-mouse_filter = 1
-mouse_default_cursor_shape = 2
-texture_normal = SubResource("NoiseTexture2D_fvp3r")
-
-[node name="AllCategoriesButton" type="TextureButton" parent="PlayerAllItemsSide/CategoryButtons"]
-layout_mode = 2
-mouse_filter = 1
-mouse_default_cursor_shape = 2
-texture_normal = SubResource("NoiseTexture2D_fvp3r")
-
-[node name="CenterContainer" type="CenterContainer" parent="PlayerAllItemsSide"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="ScrollContainer" type="ScrollContainer" parent="PlayerAllItemsSide/CenterContainer"]
-custom_minimum_size = Vector2(664, 512)
-layout_mode = 2
-horizontal_scroll_mode = 0
-
-[node name="InventoryItemsGrid" type="GridContainer" parent="PlayerAllItemsSide/CenterContainer/ScrollContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-columns = 5
 
 [node name="MoneyBalanceLabel" type="Label" parent="PlayerAllItemsSide"]
 layout_mode = 2
@@ -157,50 +37,22 @@ text = "$400"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="CharacterEquipmentSide" type="TabContainer" parent="."]
+custom_minimum_size = Vector2(720, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+
 [node name="FloatingUIItemSlot" parent="." instance=ExtResource("7_ojs2b")]
 unique_name_in_owner = true
 layout_mode = 0
 offset_right = 128.0
 offset_bottom = 128.0
 
-[connection signal="pressed" from="PlayerAllItemsSide/CategoryButtons/MatrixCategoryButton" to="." method="_on_matrix_category_button_pressed"]
-[connection signal="pressed" from="PlayerAllItemsSide/CategoryButtons/WeaponCategoryButton" to="." method="_on_weapon_category_button_pressed"]
-[connection signal="pressed" from="PlayerAllItemsSide/CategoryButtons/ArmorCategoryButton" to="." method="_on_armor_category_button_pressed"]
-[connection signal="pressed" from="PlayerAllItemsSide/CategoryButtons/StoryCategoryButton" to="." method="_on_story_category_button_pressed"]
-[connection signal="pressed" from="PlayerAllItemsSide/CategoryButtons/AllCategoriesButton" to="." method="_on_all_categories_button_pressed"]
-[connection signal="gui_input" from="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/UIItemSlot" to="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/UIItemSlot" method="_on_gui_input" flags=18]
-[connection signal="mouse_entered" from="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/UIItemSlot" to="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/UIItemSlot" method="_on_mouse_entered" flags=18]
-[connection signal="mouse_exited" from="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/UIItemSlot" to="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/UIItemSlot" method="_on_mouse_exited" flags=18]
-[connection signal="gui_input" from="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17944" to="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17944" method="_on_gui_input" flags=18]
-[connection signal="mouse_entered" from="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17944" to="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17944" method="_on_mouse_entered" flags=18]
-[connection signal="mouse_exited" from="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17944" to="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17944" method="_on_mouse_exited" flags=18]
-[connection signal="gui_input" from="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17945" to="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17945" method="_on_gui_input" flags=18]
-[connection signal="mouse_entered" from="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17945" to="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17945" method="_on_mouse_entered" flags=18]
-[connection signal="mouse_exited" from="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17945" to="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17945" method="_on_mouse_exited" flags=18]
-[connection signal="gui_input" from="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17946" to="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17946" method="_on_gui_input" flags=18]
-[connection signal="mouse_entered" from="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17946" to="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17946" method="_on_mouse_entered" flags=18]
-[connection signal="mouse_exited" from="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17946" to="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17946" method="_on_mouse_exited" flags=18]
-[connection signal="gui_input" from="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17947" to="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17947" method="_on_gui_input" flags=18]
-[connection signal="mouse_entered" from="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17947" to="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17947" method="_on_mouse_entered" flags=18]
-[connection signal="mouse_exited" from="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17947" to="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17947" method="_on_mouse_exited" flags=18]
-[connection signal="gui_input" from="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17948" to="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17948" method="_on_gui_input" flags=18]
-[connection signal="mouse_entered" from="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17948" to="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17948" method="_on_mouse_entered" flags=18]
-[connection signal="mouse_exited" from="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17948" to="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17948" method="_on_mouse_exited" flags=18]
-[connection signal="gui_input" from="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17949" to="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17949" method="_on_gui_input" flags=18]
-[connection signal="mouse_entered" from="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17949" to="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17949" method="_on_mouse_entered" flags=18]
-[connection signal="mouse_exited" from="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17949" to="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17949" method="_on_mouse_exited" flags=18]
-[connection signal="gui_input" from="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17950" to="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17950" method="_on_gui_input" flags=18]
-[connection signal="mouse_entered" from="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17950" to="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17950" method="_on_mouse_entered" flags=18]
-[connection signal="mouse_exited" from="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17950" to="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17950" method="_on_mouse_exited" flags=18]
-[connection signal="gui_input" from="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17951" to="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17951" method="_on_gui_input" flags=18]
-[connection signal="mouse_entered" from="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17951" to="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17951" method="_on_mouse_entered" flags=18]
-[connection signal="mouse_exited" from="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17951" to="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17951" method="_on_mouse_exited" flags=18]
-[connection signal="gui_input" from="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17952" to="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17952" method="_on_gui_input" flags=18]
-[connection signal="mouse_entered" from="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17952" to="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17952" method="_on_mouse_entered" flags=18]
-[connection signal="mouse_exited" from="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17952" to="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17952" method="_on_mouse_exited" flags=18]
-[connection signal="gui_input" from="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17953" to="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17953" method="_on_gui_input" flags=18]
-[connection signal="mouse_entered" from="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17953" to="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17953" method="_on_mouse_entered" flags=18]
-[connection signal="mouse_exited" from="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17953" to="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17953" method="_on_mouse_exited" flags=18]
-[connection signal="gui_input" from="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17954" to="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17954" method="_on_gui_input" flags=18]
-[connection signal="mouse_entered" from="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17954" to="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17954" method="_on_mouse_entered" flags=18]
-[connection signal="mouse_exited" from="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17954" to="PlayerAllItemsSide/CenterContainer/ScrollContainer/InventoryItemsGrid/@PanelContainer@17954" method="_on_mouse_exited" flags=18]
+[connection signal="filter_category_requested" from="PlayerAllItemsSide/CategoryButtons" to="." method="_on_category_buttons_filter_category_requested"]
+[connection signal="swap_items_with_floating_requested" from="PlayerAllItemsSide/InventoryGrid" to="." method="swap_with_floating"]
+[connection signal="take_one_item_requested" from="PlayerAllItemsSide/InventoryGrid" to="." method="take_one_to_floating"]

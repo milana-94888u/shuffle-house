@@ -31,11 +31,15 @@ func apply_slots(new_slots: Array[InventorySlot]) -> void:
 			slots.push_back(InventorySlot.new())
 	
 	for slot in slots:
-		if slot.changed.is_connected(apply_slots):
+		if slot.changed.is_connected(change_slots):
 			continue
-		slot.changed.connect(apply_slots.bind(slots))
+		slot.changed.connect(change_slots)
 
 	emit_changed()
+
+
+func change_slots() -> void:
+	slots = slots
 
 
 func compare_slots(left_slot: InventorySlot, right_slot: InventorySlot) -> bool:

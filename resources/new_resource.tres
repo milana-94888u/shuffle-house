@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="PlayableCharacterData" load_steps=8 format=3 uid="uid://dctgi1rbih8oq"]
+
+[ext_resource type="Script" path="res://src/resources/characters/playable_character/playable_character_data.gd" id="1_0dhfo"]
+[ext_resource type="Script" path="res://src/resources/characters/playable_character/character_level.gd" id="1_bk4ej"]
+
+[sub_resource type="Resource" id="Resource_akag5"]
+script = ExtResource("1_bk4ej")
+experience_from_previous = 0
+
+[sub_resource type="Resource" id="Resource_8wt8u"]
+script = ExtResource("1_bk4ej")
+experience_from_previous = 50
+
+[sub_resource type="Resource" id="Resource_lu53l"]
+script = ExtResource("1_bk4ej")
+experience_from_previous = 70
+
+[sub_resource type="Resource" id="Resource_e70xu"]
+script = ExtResource("1_bk4ej")
+experience_from_previous = 150
+
+[sub_resource type="Resource" id="Resource_76cwi"]
+script = ExtResource("1_bk4ej")
+experience_from_previous = 200
+
+[resource]
+script = ExtResource("1_0dhfo")
+possible_levels = Array[ExtResource("1_bk4ej")]([SubResource("Resource_akag5"), SubResource("Resource_8wt8u"), SubResource("Resource_lu53l"), SubResource("Resource_e70xu"), SubResource("Resource_76cwi")])
+experience = 8
+level = 1

@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://ce28vjqwrnwo7"]
+
+[ext_resource type="Script" path="res://src/autoload/ui/game_pausable_menu_manager.gd" id="1_7t5ym"]
+
+[sub_resource type="Theme" id="Theme_otve3"]
+default_font_size = 64
+
+[node name="GamePausableMenuManager" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_7t5ym")
+
+[node name="PauseMenu" type="CenterContainer" parent="."]
+process_mode = 3
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_otve3")
+
+[node name="Buttons" type="VBoxContainer" parent="PauseMenu"]
+layout_mode = 2
+
+[node name="PausedLabel" type="Label" parent="PauseMenu/Buttons"]
+layout_mode = 2
+text = "Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="PauseMenu/Buttons"]
+layout_mode = 2
+text = "Continue"
+
+[node name="ExitButton" type="Button" parent="PauseMenu/Buttons"]
+layout_mode = 2
+text = "Exit"
+
+[connection signal="pressed" from="PauseMenu/Buttons/ContinueButton" to="." method="_on_continue_button_pressed"]
