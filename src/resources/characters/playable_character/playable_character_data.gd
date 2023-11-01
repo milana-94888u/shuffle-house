@@ -61,7 +61,6 @@ func apply_levels(new_levels: Array[CharacterLevel]) -> void:
 	for i in range(1, possible_levels.size()):
 		if not is_instance_valid(possible_levels[i]):
 			possible_levels[i] = CharacterLevel.new()
-		print(possible_levels[i].get_class())
 		if possible_levels[i].experience_from_previous < 1:
 			possible_levels[i].set_block_signals(true)
 			possible_levels[i].experience_from_previous = 1
@@ -78,3 +77,7 @@ func change_levels() -> void:
 
 func _init() -> void:
 	possible_levels = []
+
+
+func get_character_stats() -> CharacterStats:
+	return possible_levels[level - 1].stats

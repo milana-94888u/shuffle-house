@@ -1,10 +1,63 @@
-[gd_scene load_steps=6 format=3 uid="uid://deebvqu7tgnv1"]
+[gd_scene load_steps=21 format=3 uid="uid://deebvqu7tgnv1"]
 
 [ext_resource type="Script" path="res://src/scenes/ui/inventory/inventory_ui.gd" id="1_k74cj"]
 [ext_resource type="PackedScene" uid="uid://dfwhtfeon2vtk" path="res://src/scenes/ui/inventory/slot/ui_item_slot.tscn" id="2_r8f35"]
 [ext_resource type="PackedScene" uid="uid://d864f42cwjr3" path="res://src/scenes/ui/inventory/category/category_buttons.tscn" id="3_dswfy"]
+[ext_resource type="Script" path="res://src/resources/inventory/game_inventory.gd" id="5_dbswe"]
+[ext_resource type="Resource" uid="uid://5fwyvlhsbp0q" path="res://resources/inventory/items/clothes/base_test_clothes.tres" id="6_w2f68"]
 [ext_resource type="PackedScene" uid="uid://dhsva31e3nr1u" path="res://src/scenes/ui/inventory/slot/floating_ui_item_slot.tscn" id="7_ojs2b"]
 [ext_resource type="PackedScene" uid="uid://cdam2fgd05y1x" path="res://src/scenes/ui/inventory/inventory_grid.tscn" id="8_1xn64"]
+[ext_resource type="Script" path="res://src/resources/inventory/inventory_slots/inventory_slot.gd" id="8_or4l8"]
+
+[sub_resource type="Resource" id="Resource_eitw3"]
+script = ExtResource("8_or4l8")
+item = ExtResource("6_w2f68")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_vfcdp"]
+script = ExtResource("8_or4l8")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_c6u5p"]
+script = ExtResource("8_or4l8")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_1bwxp"]
+script = ExtResource("8_or4l8")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_majpg"]
+script = ExtResource("8_or4l8")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_aub06"]
+script = ExtResource("8_or4l8")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_oy6e7"]
+script = ExtResource("8_or4l8")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_rn3et"]
+script = ExtResource("8_or4l8")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_5plwq"]
+script = ExtResource("8_or4l8")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_sdo5q"]
+script = ExtResource("8_or4l8")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_se583"]
+script = ExtResource("8_or4l8")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_4po4i"]
+script = ExtResource("5_dbswe")
+min_empty_slots = 10
+slots = Array[ExtResource("8_or4l8")]([SubResource("Resource_eitw3"), SubResource("Resource_vfcdp"), SubResource("Resource_c6u5p"), SubResource("Resource_1bwxp"), SubResource("Resource_majpg"), SubResource("Resource_aub06"), SubResource("Resource_oy6e7"), SubResource("Resource_rn3et"), SubResource("Resource_5plwq"), SubResource("Resource_sdo5q"), SubResource("Resource_se583")])
 
 [node name="InventoryUI" type="Control"]
 custom_minimum_size = Vector2(664, 0)
@@ -28,8 +81,10 @@ grow_vertical = 2
 [node name="CategoryButtons" parent="PlayerAllItemsSide" instance=ExtResource("3_dswfy")]
 layout_mode = 2
 
-[node name="InventoryGrid" parent="PlayerAllItemsSide" instance=ExtResource("8_1xn64")]
+[node name="AllPlayerInventoryGrid" parent="PlayerAllItemsSide" instance=ExtResource("8_1xn64")]
+unique_name_in_owner = true
 layout_mode = 2
+inventory = SubResource("Resource_4po4i")
 
 [node name="MoneyBalanceLabel" type="Label" parent="PlayerAllItemsSide"]
 layout_mode = 2
@@ -54,5 +109,10 @@ offset_right = 128.0
 offset_bottom = 128.0
 
 [connection signal="filter_category_requested" from="PlayerAllItemsSide/CategoryButtons" to="." method="_on_category_buttons_filter_category_requested"]
-[connection signal="swap_items_with_floating_requested" from="PlayerAllItemsSide/InventoryGrid" to="." method="swap_with_floating"]
-[connection signal="take_one_item_requested" from="PlayerAllItemsSide/InventoryGrid" to="." method="take_one_to_floating"]
+[connection signal="toggled" from="PlayerAllItemsSide/CategoryButtons/CategoryButton" to="PlayerAllItemsSide/CategoryButtons/CategoryButton" method="_on_toggled" flags=18]
+[connection signal="toggled" from="PlayerAllItemsSide/CategoryButtons/@TextureButton@17948" to="PlayerAllItemsSide/CategoryButtons/@TextureButton@17948" method="_on_toggled" flags=18]
+[connection signal="toggled" from="PlayerAllItemsSide/CategoryButtons/@TextureButton@17949" to="PlayerAllItemsSide/CategoryButtons/@TextureButton@17949" method="_on_toggled" flags=18]
+[connection signal="toggled" from="PlayerAllItemsSide/CategoryButtons/@TextureButton@17950" to="PlayerAllItemsSide/CategoryButtons/@TextureButton@17950" method="_on_toggled" flags=18]
+[connection signal="toggled" from="PlayerAllItemsSide/CategoryButtons/@TextureButton@17951" to="PlayerAllItemsSide/CategoryButtons/@TextureButton@17951" method="_on_toggled" flags=18]
+[connection signal="swap_items_with_floating_requested" from="PlayerAllItemsSide/AllPlayerInventoryGrid" to="." method="swap_with_floating"]
+[connection signal="take_one_item_requested" from="PlayerAllItemsSide/AllPlayerInventoryGrid" to="." method="take_one_to_floating"]

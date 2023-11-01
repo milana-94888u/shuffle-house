@@ -5,6 +5,14 @@ extends HBoxContainer
 signal filter_category_requested(category: ItemCategory)
 
 
+var group: ButtonGroup
+
+
+func _init() -> void:
+	group = ButtonGroup.new()
+	group.allow_unpress = true
+
+
 @export var filter_categories: Array[ItemCategory]:
 	set = apply_categories
 @export var all_categories_icon: Texture2D:
@@ -31,8 +39,16 @@ func add_button(icon: Texture2D, button_name: String, category: ItemCategory = n
 	var new_button := category_button_scene.instantiate() as TextureButton
 	new_button.texture_normal = icon
 	new_button.tooltip_text = button_name
-	new_button.pressed.connect(func(): filter_category_requested.emit(category))
+	new_button.toggled.connect(process_button_toggle.bind(category))
+	new_button.button_group = group
 	add_child(new_button)
+
+
+func process_button_toggle(button_pressed: bool, category: ItemCategory) -> void:
+	if button_pressed:
+		filter_category_requested.emit(category)
+	else:
+		filter_category_requested.emit(null)
 
 
 func set_buttons() -> void:
@@ -45,4 +61,8 @@ func set_buttons() -> void:
 			category.changed.connect(apply_categories.bind(filter_categories))
 		add_button(category.icon, category.name, category)
 	if is_instance_valid(all_categories_icon):
+		group.allow_unpress = false
 		add_button(all_categories_icon, "All categories")
+		(get_children()[-1] as TextureButton).button_pressed = true
+	else:
+		group.allow_unpress = true

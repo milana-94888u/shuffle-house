@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GamePausableMenuManager="*res://src/autoload/ui/game_pausable_menu_manager.tscn"
+EquipmentResourcesManager="*res://src/autoload/equipment_resources_manager.gd"
 
 [display]
 

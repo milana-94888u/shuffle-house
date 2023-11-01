@@ -35,8 +35,21 @@ func apply_category(new_category: ItemCategory) -> void:
 
 
 func apply_equipment(new_equipment: Equipment) -> void:
+#	if not is_instance_valid(new_equipment):
+#		EquipmentResourcesManager.remove_equipment(equipment)
 	equipment = new_equipment
 	if is_instance_valid(equipment):
 		if not equipment.changed.is_connected(apply_equipment):
 			equipment.changed.connect(apply_equipment.bind(equipment))
+		EquipmentResourcesManager.add_item(self)
+	else:
+		EquipmentResourcesManager.remove_item(self)
 	emit_changed()
+
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_POSTINITIALIZE:
+		if is_instance_valid(equipment):
+			EquipmentResourcesManager.add_item(self)
+	if what == NOTIFICATION_PREDELETE:
+		EquipmentResourcesManager.remove_item(self)

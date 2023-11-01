@@ -5,6 +5,7 @@ extends PanelContainer
 
 signal swap_items_with_floating_requested(ui_slot: Slot)
 signal take_one_item_requested(ui_slot: Slot)
+signal updated_slot()
 
 
 @onready var category_icon := $CategoryIcon as TextureRect
@@ -34,7 +35,7 @@ func apply_slot(new_slot: InventorySlot) -> void:
 	item_icon.texture = slot.get_item_icon()
 	item_amount_label.text = str(slot.amount)
 	item_amount_label.visible = slot.amount > 1
-	
+	updated_slot.emit()
 
 
 func _ready() -> void:

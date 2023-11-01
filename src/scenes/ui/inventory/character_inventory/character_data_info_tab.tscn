@@ -1,0 +1,70 @@
+[gd_scene load_steps=14 format=3 uid="uid://bi13yu7jvhm25"]
+
+[ext_resource type="Script" path="res://src/scenes/ui/inventory/character_inventory/character_data_info_tab.gd" id="1_0e2h4"]
+[ext_resource type="PackedScene" uid="uid://dfwhtfeon2vtk" path="res://src/scenes/ui/inventory/slot/ui_item_slot.tscn" id="1_qrjqf"]
+[ext_resource type="Script" path="res://src/resources/characters/playable_character/character_level.gd" id="2_4fiu5"]
+[ext_resource type="Resource" uid="uid://dlpxrd25vs7vb" path="res://resources/inventory/categories/matrix.tres" id="2_6sh8l"]
+[ext_resource type="Script" path="res://src/resources/inventory/inventory_slots/categorized_slot.gd" id="3_5fcre"]
+[ext_resource type="Script" path="res://src/resources/characters/playable_character/playable_character_data.gd" id="3_14nmv"]
+[ext_resource type="Resource" uid="uid://y6cld6bntuvb" path="res://resources/inventory/categories/weapon.tres" id="4_jyk87"]
+[ext_resource type="Resource" uid="uid://5xps8ocb5ll" path="res://resources/inventory/categories/clothes.tres" id="5_swgvy"]
+
+[sub_resource type="Resource" id="Resource_14rsb"]
+script = ExtResource("2_4fiu5")
+experience_from_previous = 0
+
+[sub_resource type="Resource" id="Resource_5j8lh"]
+script = ExtResource("3_14nmv")
+possible_levels = Array[ExtResource("2_4fiu5")]([SubResource("Resource_14rsb")])
+experience = 0
+level = 1
+
+[sub_resource type="Resource" id="Resource_uypqw"]
+script = ExtResource("3_5fcre")
+accepted_category = ExtResource("2_6sh8l")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_s7npa"]
+script = ExtResource("3_5fcre")
+accepted_category = ExtResource("4_jyk87")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_yb3f3"]
+script = ExtResource("3_5fcre")
+accepted_category = ExtResource("5_swgvy")
+amount = 0
+
+[node name="CharacterDataInfoTab" type="PanelContainer"]
+custom_minimum_size = Vector2(700, 0)
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("1_0e2h4")
+character_data = SubResource("Resource_5j8lh")
+
+[node name="EquipmentLine" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="MatrixSlot" parent="EquipmentLine" instance=ExtResource("1_qrjqf")]
+unique_name_in_owner = true
+layout_mode = 2
+slot = SubResource("Resource_uypqw")
+
+[node name="WeaponSlot" parent="EquipmentLine" instance=ExtResource("1_qrjqf")]
+unique_name_in_owner = true
+layout_mode = 2
+slot = SubResource("Resource_s7npa")
+
+[node name="ClothesSlot" parent="EquipmentLine" instance=ExtResource("1_qrjqf")]
+unique_name_in_owner = true
+layout_mode = 2
+slot = SubResource("Resource_yb3f3")
+
+[connection signal="updated_slot" from="EquipmentLine/MatrixSlot" to="." method="_on_matrix_slot_updated_slot"]
+[connection signal="updated_slot" from="EquipmentLine/WeaponSlot" to="." method="_on_weapon_slot_updated_slot"]
+[connection signal="updated_slot" from="EquipmentLine/ClothesSlot" to="." method="_on_clothes_slot_updated_slot"]

@@ -1,4 +1,5 @@
 @tool
+class_name InventoryGrid
 extends CenterContainer
 
 
@@ -9,7 +10,10 @@ signal take_one_item_requested(ui_slot: Slot)
 @onready var inventory_grid := %InventoryItemsGrid as GridContainer
 
 @export var slot_scene: PackedScene
-@export var filter_category: ItemCategory
+@export var filter_category: ItemCategory:
+	set(new_category):
+		filter_category = new_category
+		inventory = inventory
 
 
 @export var inventory: GameInventory:
@@ -17,7 +21,6 @@ signal take_one_item_requested(ui_slot: Slot)
 
 
 func apply_inventory(new_inventory: GameInventory) -> void:
-	DisplayServer
 	if not is_node_ready():
 		await ready
 	inventory = new_inventory

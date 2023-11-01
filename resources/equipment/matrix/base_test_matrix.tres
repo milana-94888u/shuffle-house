@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="Matrix" load_steps=2 format=3 uid="uid://fcg6ae4v5iil"]
+
+[ext_resource type="Script" path="res://src/resources/equipment/matrix/matrix.gd" id="1_5bnlv"]
+
+[resource]
+script = ExtResource("1_5bnlv")

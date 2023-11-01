@@ -5,12 +5,18 @@
 [ext_resource type="Resource" uid="uid://5xps8ocb5ll" path="res://resources/inventory/categories/clothes.tres" id="3_28mj7"]
 [ext_resource type="Resource" uid="uid://y6cld6bntuvb" path="res://resources/inventory/categories/weapon.tres" id="4_s5xb3"]
 [ext_resource type="Resource" uid="uid://bqnhc6xuh237w" path="res://resources/inventory/categories/plot.tres" id="5_klyrh"]
-[ext_resource type="Texture2D" uid="uid://bjuws3ersjnu8" path="res://assets/sprites/icons/inventory/categories/all.png" id="6_ixttp"]
+[ext_resource type="Texture2D" uid="uid://bjuws3ersjnu8" path="res://assets/sprites/icons/inventory/categories/all.png" id="6_jx04g"]
 [ext_resource type="PackedScene" uid="uid://bcr3bnsk4aqcc" path="res://src/scenes/ui/inventory/category/category_button.tscn" id="7_xerq2"]
 
 [node name="CategoryButtons" type="HBoxContainer"]
 alignment = 1
 script = ExtResource("1_ilkx6")
 filter_categories = Array[Resource("res://src/resources/inventory/inventory_items/item_category.gd")]([ExtResource("2_grayr"), ExtResource("3_28mj7"), ExtResource("4_s5xb3"), ExtResource("5_klyrh")])
-all_categories_icon = ExtResource("6_ixttp")
+all_categories_icon = ExtResource("6_jx04g")
 category_button_scene = ExtResource("7_xerq2")
+
+[connection signal="toggled" from="CategoryButton" to="CategoryButton" method="_on_toggled" flags=18]
+[connection signal="toggled" from="@TextureButton@20294" to="@TextureButton@20294" method="_on_toggled" flags=18]
+[connection signal="toggled" from="@TextureButton@20295" to="@TextureButton@20295" method="_on_toggled" flags=18]
+[connection signal="toggled" from="@TextureButton@20296" to="@TextureButton@20296" method="_on_toggled" flags=18]
+[connection signal="toggled" from="@TextureButton@20297" to="@TextureButton@20297" method="_on_toggled" flags=18]

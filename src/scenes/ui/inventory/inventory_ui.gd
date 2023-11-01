@@ -3,6 +3,7 @@ extends Control
 
 
 @onready var floating_slot := %FloatingUIItemSlot as FloatingSlot
+@onready var all_player_inventory_grid := %AllPlayerInventoryGrid as InventoryGrid
 
 
 @export var slot_scene: PackedScene
@@ -18,5 +19,6 @@ func take_one_to_floating(static_slot: Slot) -> void:
 
 
 func _on_category_buttons_filter_category_requested(category: ItemCategory) -> void:
-	$PlayerAllItemsSide/InventoryGrid.filter_category = category
-	$PlayerAllItemsSide/InventoryGrid.inventory = $PlayerAllItemsSide/InventoryGrid.inventory
+	if not is_node_ready():
+		await ready
+	all_player_inventory_grid.filter_category = category
