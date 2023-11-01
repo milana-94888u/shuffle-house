@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpqrglkt1sj4f"]
+
+[ext_resource type="TileSet" uid="uid://bijphbpa5fdk5" path="res://src/scenes/locations/meeting_room.tres" id="1_jf2vb"]
+
+[node name="Office"]
+
+[node name="TileMap" parent="." index="0"]
+tile_set = ExtResource("1_jf2vb")
